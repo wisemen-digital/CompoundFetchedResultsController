@@ -1,0 +1,21 @@
+PODS:
+  - CompoundFetchedResultsController (1.0.0)
+  - MagicalRecord (2.3.2):
+    - MagicalRecord/Core (= 2.3.2)
+  - MagicalRecord/Core (2.3.2)
+
+DEPENDENCIES:
+  - CompoundFetchedResultsController (from `../`)
+  - MagicalRecord
+
+EXTERNAL SOURCES:
+  CompoundFetchedResultsController:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  CompoundFetchedResultsController: c256f4f6b63f561265efc29c99b9395058bbd1de
+  MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
+
+PODFILE CHECKSUM: 342bd7934d3116c9e75e8a48ff0a7ea81011e6c9
+
+COCOAPODS: 1.2.0.beta.1

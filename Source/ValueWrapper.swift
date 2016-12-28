@@ -8,7 +8,10 @@
 
 import CoreData
 
-public final class ValueWrapper<ValueType: Any>: NSObject, NSFetchRequestResult {
+extension NSObject: NSFetchRequestResult {
+}
+
+public final class ValueWrapper<ValueType: Any>: NSObject {
 	public let value: ValueType
 
 	init(value: ValueType) {

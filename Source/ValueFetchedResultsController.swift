@@ -9,10 +9,17 @@
 import CoreData
 
 public final class ValueFetchedResultsController<ItemType>: StaticFetchedResultsController {
-	public required init(values: Array<ItemType>, sectionTitle: String = "") {
-		let objects = values.map { (v: ItemType) -> ValueWrapper<ItemType> in
-			return ValueWrapper<ItemType>(value: v)
+	public var values: [ItemType] {
+		get {
+			return items.map { ($0 as! ValueWrapper<ItemType>).value }
 		}
+		set {
+			items = newValue.map { ValueWrapper<ItemType>(value: $0) }
+		}
+	}
+
+	public required init(values: Array<ItemType>, sectionTitle: String = "") {
+		let objects = values.map { ValueWrapper<ItemType>(value: $0) }
 
 		super.init(items: objects, sectionTitle: sectionTitle)
 	}

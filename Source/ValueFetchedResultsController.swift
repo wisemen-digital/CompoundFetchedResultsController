@@ -8,7 +8,7 @@
 
 import CoreData
 
-public final class ValueFetchedResultsController<ItemType>: StaticFetchedResultsController {
+public final class ValueFetchedResultsController<ItemType: Any>: StaticFetchedResultsController<ValueWrapper<ItemType>> {
 	public var values: [ItemType] {
 		get {
 			return items.map { ($0 as! ValueWrapper<ItemType>).value }
@@ -30,7 +30,7 @@ public final class ValueFetchedResultsController<ItemType>: StaticFetchedResults
 		if let item = item as? ValueWrapper<ItemType> {
 			return item.value
 		} else {
-			fatalError("Unexpected object found at path \(indexPath): item")
+			fatalError("Could not unwrap value from object at path \(indexPath): \(item)")
 		}
 	}
 }

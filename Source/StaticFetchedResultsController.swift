@@ -8,8 +8,8 @@
 
 import CoreData
 
-public class StaticFetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> {
-	public var items: [NSFetchRequestResult] {
+public class StaticFetchedResultsController<ResultType: NSFetchRequestResult>: NSFetchedResultsController<NSFetchRequestResult> {
+	public var items: [ResultType] {
 		didSet {
 			delegate?.controllerWillChangeContent?(self)
 
@@ -21,7 +21,7 @@ public class StaticFetchedResultsController: NSFetchedResultsController<NSFetchR
 	}
 	let sectionTitle: String
 
-	public init(items: [NSFetchRequestResult], sectionTitle: String? = nil) {
+	public init(items: [ResultType], sectionTitle: String? = nil) {
 		self.items = items
 		self.sectionTitle = sectionTitle ?? ""
 		super.init()
@@ -34,9 +34,9 @@ public class StaticFetchedResultsController: NSFetchedResultsController<NSFetchR
 	override convenience init(fetchRequest: NSFetchRequest<NSFetchRequestResult>, managedObjectContext context: NSManagedObjectContext, sectionNameKeyPath: String?, cacheName name: String?) {
 		fatalError("This method is not available")
 	}
-}
 
-extension StaticFetchedResultsController {
+	// MARK: - NSFetchedResultsController overrides
+
 	public override func performFetch() throws {
 	}
 

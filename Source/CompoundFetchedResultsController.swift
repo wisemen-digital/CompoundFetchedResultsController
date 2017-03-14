@@ -8,11 +8,13 @@
 
 import CoreData
 
-public final class CompoundFetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> {
-	let controllers: [NSFetchedResultsController<NSFetchRequestResult>]
+public typealias FetchRequestResult = NSFetchRequestResult
+
+public final class CompoundFetchedResultsController: NSFetchedResultsController<FetchRequestResult> {
+	let controllers: [NSFetchedResultsController<FetchRequestResult>]
 	var offsets: [NSObject: Int]
 
-	public required init(controllers: [NSFetchedResultsController<NSFetchRequestResult>]) {
+	public required init(controllers: [NSFetchedResultsController<FetchRequestResult>]) {
 		self.controllers = controllers
 
 		self.offsets = CompoundFetchedResultsController.calculateSectionOffsets(controllers: controllers)
@@ -29,11 +31,11 @@ public final class CompoundFetchedResultsController: NSFetchedResultsController<
 		self.init(controllers: [])
 	}
 
-	override convenience init(fetchRequest: NSFetchRequest<NSFetchRequestResult>, managedObjectContext context: NSManagedObjectContext, sectionNameKeyPath: String?, cacheName name: String?) {
+	override convenience init(fetchRequest: NSFetchRequest<FetchRequestResult>, managedObjectContext context: NSManagedObjectContext, sectionNameKeyPath: String?, cacheName name: String?) {
 		fatalError("This method is not available")
 	}
 
-	static func calculateSectionOffsets(controllers: [NSFetchedResultsController<NSFetchRequestResult>]) -> [NSFetchedResultsController<NSFetchRequestResult>: Int] {
+	static func calculateSectionOffsets(controllers: [NSFetchedResultsController<FetchRequestResult>]) -> [NSFetchedResultsController<FetchRequestResult>: Int] {
 		var offset = 0
 		var result = [NSObject: Int]()
 
@@ -42,7 +44,7 @@ public final class CompoundFetchedResultsController: NSFetchedResultsController<
 			offset += controller.sections?.count ?? 0
 		}
 
-		return result as! [NSFetchedResultsController<NSFetchRequestResult>: Int]
+		return result as! [NSFetchedResultsController<FetchRequestResult>: Int]
 	}
 }
 
@@ -53,7 +55,7 @@ extension CompoundFetchedResultsController {
 		}
 	}
 
-	public override var fetchRequest: NSFetchRequest<NSFetchRequestResult> {
+	public override var fetchRequest: NSFetchRequest<FetchRequestResult> {
 		return NSFetchRequest()
 	}
 
@@ -69,11 +71,11 @@ extension CompoundFetchedResultsController {
 		return nil
 	}
 
-	public override var fetchedObjects: [NSFetchRequestResult]? {
+	public override var fetchedObjects: [FetchRequestResult]? {
 		return controllers.flatMap { $0.fetchedObjects }.flatMap { $0 }
 	}
 
-	public override func object(at indexPath: IndexPath) -> NSFetchRequestResult {
+	public override func object(at indexPath: IndexPath) -> FetchRequestResult {
 		for controller in controllers {
 			if (indexPath.section - offsets[controller]!) < (controller.sections?.count ?? 0) {
 				let path = IndexPath(item: indexPath.item, section: indexPath.section - offsets[controller]!)
@@ -84,7 +86,7 @@ extension CompoundFetchedResultsController {
 		fatalError("Path \(indexPath) not found among sub-controllers")
 	}
 
-	public override func indexPath(forObject object: NSFetchRequestResult) -> IndexPath? {
+	public override func indexPath(forObject object: FetchRequestResult) -> IndexPath? {
 		for controller in controllers {
 			if let path = controller.indexPath(forObject: object) {
 				return IndexPath(item: path.item, section: path.section + offsets[controller]!)

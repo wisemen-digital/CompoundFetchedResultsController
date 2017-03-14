@@ -25,7 +25,7 @@ public final class ValueFetchedResultsController<ItemType: Any>: StaticFetchedRe
 	}
 
 	public func object(at indexPath: IndexPath) -> ItemType {
-		let item: NSFetchRequestResult = object(at: indexPath)
+		let item: FetchRequestResult = object(at: indexPath)
 
 		if let item = item as? ValueWrapper<ItemType> {
 			return item.value

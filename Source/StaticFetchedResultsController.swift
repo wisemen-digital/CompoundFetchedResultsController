@@ -8,7 +8,7 @@
 
 import CoreData
 
-public class StaticFetchedResultsController<ResultType: NSFetchRequestResult>: NSFetchedResultsController<NSFetchRequestResult> {
+public class StaticFetchedResultsController<ResultType: FetchRequestResult>: NSFetchedResultsController<FetchRequestResult> {
 	public var items: [ResultType] {
 		didSet {
 			delegate?.controllerWillChangeContent?(self)
@@ -31,7 +31,7 @@ public class StaticFetchedResultsController<ResultType: NSFetchRequestResult>: N
 		self.init(items: [])
 	}
 
-	override convenience init(fetchRequest: NSFetchRequest<NSFetchRequestResult>, managedObjectContext context: NSManagedObjectContext, sectionNameKeyPath: String?, cacheName name: String?) {
+	override convenience init(fetchRequest: NSFetchRequest<FetchRequestResult>, managedObjectContext context: NSManagedObjectContext, sectionNameKeyPath: String?, cacheName name: String?) {
 		fatalError("This method is not available")
 	}
 
@@ -40,7 +40,7 @@ public class StaticFetchedResultsController<ResultType: NSFetchRequestResult>: N
 	public override func performFetch() throws {
 	}
 
-	public override var fetchRequest: NSFetchRequest<NSFetchRequestResult> {
+	public override var fetchRequest: NSFetchRequest<FetchRequestResult> {
 		return NSFetchRequest()
 	}
 
@@ -56,15 +56,15 @@ public class StaticFetchedResultsController<ResultType: NSFetchRequestResult>: N
 		return nil
 	}
 
-	public override var fetchedObjects: [NSFetchRequestResult]? {
+	public override var fetchedObjects: [FetchRequestResult]? {
 		return items
 	}
 
-	public override func object(at indexPath: IndexPath) -> NSFetchRequestResult {
+	public override func object(at indexPath: IndexPath) -> FetchRequestResult {
 		return items[indexPath.item]
 	}
 
-	public override func indexPath(forObject object: NSFetchRequestResult) -> IndexPath? {
+	public override func indexPath(forObject object: FetchRequestResult) -> IndexPath? {
 		guard let item = items.index(where: { $0.hash == object.hash }) else { return nil }
 		return IndexPath(item: item, section: 0)
 	}

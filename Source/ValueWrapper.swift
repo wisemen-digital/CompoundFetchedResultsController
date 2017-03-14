@@ -6,9 +6,9 @@
 //  Copyright © 2016. All rights reserved.
 //
 
-import CoreData
+import Foundation
 
-extension NSObject: NSFetchRequestResult {
+extension NSObject: FetchRequestResult {
 }
 
 public final class ValueWrapper<ValueType: Any>: NSObject {

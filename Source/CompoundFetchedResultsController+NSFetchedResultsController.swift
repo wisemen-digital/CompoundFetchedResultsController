@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import UIKit
 
 extension CompoundFetchedResultsController: NSFetchedResultsControllerDelegate {
 	public func controllerWillChangeContent(_ controller: NSFetchedResultsController<FetchRequestResult>) {

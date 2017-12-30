@@ -10,6 +10,8 @@ Pod::Spec.new do |s|
 	
 	# configuration
 	s.platform		= :ios, '8.0'
+	s.swift_version = '4.0'
+	s.static_framework = true
 	s.pod_target_xcconfig = { 'SWIFT_OPTIMIZATION_LEVEL' => '-Onone' }
 	
 	# files

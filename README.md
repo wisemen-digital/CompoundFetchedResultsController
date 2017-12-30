@@ -3,6 +3,7 @@
 [![Version](https://img.shields.io/cocoapods/v/CompoundFetchedResultsController.svg?style=flat)](http://cocoadocs.org/docsets/CompoundFetchedResultsController)
 [![License](https://img.shields.io/cocoapods/l/CompoundFetchedResultsController.svg?style=flat)](http://cocoadocs.org/docsets/CompoundFetchedResultsController)
 [![Platform](https://img.shields.io/cocoapods/p/CompoundFetchedResultsController.svg?style=flat)](http://cocoadocs.org/docsets/CompoundFetchedResultsController)
+[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://cocoapods.org/pods/CompoundFetchedResultsController)
 
 This is a collection of classes that ultimately allows you to combine multiple sources of data such as static `Array`'s and `NSFetchedResultsController`'s into one big NSFetchedResultsController.
 

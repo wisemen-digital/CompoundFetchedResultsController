@@ -22,15 +22,12 @@ public final class CompoundFetchedResultsController: NSFetchedResultsController<
 			try? controller.performFetch()
 		}
 		self.offsets = CompoundFetchedResultsController.calculateSectionOffsets(controllers: controllers)
+		super.init()
 		
 		// listen to changes
-		defer {
-			for controller in controllers {
-				controller.delegate = self
-			}
+		for controller in controllers {
+			controller.delegate = self
 		}
-
-		super.init()
 	}
 
 	override convenience init() {

@@ -11,7 +11,7 @@ import CoreData
 public final class ValueFetchedResultsController<ItemType: Any>: StaticFetchedResultsController<ValueWrapper<ItemType>> {
 	public var values: [ItemType] {
 		get {
-			return items.map { ($0 as! ValueWrapper<ItemType>).value }
+			return items.map { $0.value }
 		}
 		set {
 			items = newValue.map { ValueWrapper<ItemType>(value: $0) }

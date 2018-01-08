@@ -15,7 +15,7 @@ To try the example project, just run the following command:
 
 ## Requirements
 
-Requires Swift 3 and iOS 8 or higher.
+Requires Swift 4 and iOS 8 or higher.
 
 ## Installation
 
@@ -45,6 +45,8 @@ First, create your own FRC's that you want to ultimately combine, using whicheve
 
 The newly created FRC can be used as you would any other FRC in UITableViewController, UICollectionViewController, etc... Just be careful that you might be mixing fetched result types and handle those cases accordingly.
 
+**Important note**: You might encounter issues if you're mixing FRCs that might notify about multiple parallel imports at the same time. In those cases it's recommended to only use `reloadData()` on your table/collection view to avoid crashes in UIKit.
+
 ### Static FRCs
 
 This library provides a class for creating a FRC using static data, simply called `StaticFetchedResultsController`. Use it as follows:
@@ -58,7 +60,7 @@ This library provides a class for creating a FRC using static data, simply calle
 
 Should you modify the items property, an `update section` event will be triggered for the FRC's delegate.
 
-_**Important note**: The provided objects must be instances of NSObject subclasses.
+**Important note**: The provided objects must be instances of NSObject subclasses.
 
 ### Static FRCs with value types
 

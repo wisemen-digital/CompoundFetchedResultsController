@@ -64,6 +64,10 @@ public class StaticFetchedResultsController<ResultType: FetchRequestResult>: NSF
 		return items[indexPath.item]
 	}
 
+	public func object(at indexPath: IndexPath) -> ResultType {
+		return items[indexPath.item]
+	}
+
 	public override func indexPath(forObject object: FetchRequestResult) -> IndexPath? {
 		guard let item = items.index(where: { $0.hash == object.hash }) else { return nil }
 		return IndexPath(item: item, section: 0)

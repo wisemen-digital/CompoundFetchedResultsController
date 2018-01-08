@@ -8,6 +8,7 @@
 
 import CoreData
 
+/// Fake FRC for value types (such as structs)
 public final class ValueFetchedResultsController<ItemType: Any>: StaticFetchedResultsController<ValueWrapper<ItemType>> {
 	public var values: [ItemType] {
 		get {
@@ -25,12 +26,7 @@ public final class ValueFetchedResultsController<ItemType: Any>: StaticFetchedRe
 	}
 
 	public func object(at indexPath: IndexPath) -> ItemType {
-		let item: FetchRequestResult = object(at: indexPath)
-
-		if let item = item as? ValueWrapper<ItemType> {
-			return item.value
-		} else {
-			fatalError("Could not unwrap value from object at path \(indexPath): \(item)")
-		}
+		let item: ValueWrapper<ItemType> = object(at: indexPath)
+		return item.value
 	}
 }

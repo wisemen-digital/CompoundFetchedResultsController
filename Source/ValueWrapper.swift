@@ -8,13 +8,16 @@
 
 import Foundation
 
-extension NSObject: FetchRequestResult {
+public class AnyValueWrapper: NSObject, NSFetchRequestResult {
+	fileprivate let data: Any
+
+	init(value: Any) {
+		data = value
+	}
 }
 
-public final class ValueWrapper<ValueType: Any>: NSObject {
-	public let value: ValueType
-
-	init(value: ValueType) {
-		self.value = value
+public final class ValueWrapper<T>: AnyValueWrapper {
+	public var value: T {
+		return data as! T
 	}
 }

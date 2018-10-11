@@ -73,7 +73,7 @@ extension CompoundFetchedResultsController {
 	}
 
 	public override var fetchedObjects: [NSFetchRequestResult]? {
-		return controllers.flatMap { $0.fetchedObjects }.flatMap { $0 }
+		return controllers.compactMap { $0.fetchedObjects }.flatMap { $0 }
 	}
 
 	public override func object(at indexPath: IndexPath) -> NSFetchRequestResult {
@@ -112,7 +112,7 @@ extension CompoundFetchedResultsController {
 	}
 
 	public override var sections: [NSFetchedResultsSectionInfo]? {
-		return controllers.flatMap { $0.sections }.flatMap { $0 }
+		return controllers.compactMap { $0.sections }.flatMap { $0 }
 	}
 
 	public override func section(forSectionIndexTitle title: String, at sectionIndex: Int) -> Int {

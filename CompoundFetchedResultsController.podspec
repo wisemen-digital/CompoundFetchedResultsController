@@ -7,11 +7,11 @@ Pod::Spec.new do |s|
 	s.homepage		= 'https://github.com/djbe/CompoundFetchedResultsController'
 	s.license		= 'MIT'
 	s.author		= { 'David Jennes' => 'david.jennes@gmail.com' }
-	
+
 	# configuration
 	s.platform		= :ios, '8.0'
-	s.swift_version = '4.0'
-	
+	s.swift_version = '4.2'
+
 	# files
 	s.frameworks	= 'Foundation', 'CoreData'
 	s.source		= { :git => 'https://github.com/djbe/CompoundFetchedResultsController.git', :tag => "#{s.version}" }

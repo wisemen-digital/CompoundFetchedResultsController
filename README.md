@@ -3,7 +3,7 @@
 [![Version](https://img.shields.io/cocoapods/v/CompoundFetchedResultsController.svg?style=flat)](http://cocoadocs.org/docsets/CompoundFetchedResultsController)
 [![License](https://img.shields.io/cocoapods/l/CompoundFetchedResultsController.svg?style=flat)](http://cocoadocs.org/docsets/CompoundFetchedResultsController)
 [![Platform](https://img.shields.io/cocoapods/p/CompoundFetchedResultsController.svg?style=flat)](http://cocoadocs.org/docsets/CompoundFetchedResultsController)
-[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://cocoapods.org/pods/CompoundFetchedResultsController)
+[![Swift version](https://img.shields.io/badge/Swift-4.2-orange.svg)](https://cocoapods.org/pods/CompoundFetchedResultsController)
 
 This is a collection of classes that ultimately allows you to combine multiple sources of data such as static `Array`'s and `NSFetchedResultsController`'s into one big NSFetchedResultsController.
 
@@ -71,11 +71,14 @@ Should you want to work with Swift value types, there is also a generic `ValueFe
       myValue2,
       myValue3
     ]
-    let frc = StaticFetchedResultsController(values: values, sectionTitle: "My Static Section")
+    let frc = ValueFetchedResultsController(values: values, sectionTitle: "My Static Section")
 
 The values will automatically be wrapped into a simple generic `ValueWrapper` object. You can at a later point retrieve a value using:
 
-    let value: MyValueType = frc.object(at: indexPath)
+    if let wrapper = frc.object(at: indexPath) as? ValueWrapper<MyValueType> {
+      let value = wrapper.value
+      ...
+    }
 
 ## Credits
 

@@ -14,6 +14,12 @@ Pod::Spec.new do |s|
 
 	# files
 	s.frameworks	= 'Foundation', 'CoreData'
-	s.source		= { :git => 'https://github.com/djbe/CompoundFetchedResultsController.git', :tag => "#{s.version}" }
-	s.source_files	= 'Source/*.{swift,h,m}'
+	s.source		= {
+		:git => 'https://github.com/djbe/CompoundFetchedResultsController.git',
+		:tag => "#{s.version}"
+	}
+	s.source_files	= 'Source/**/*.{swift,h,m}'
+	s.pod_target_xcconfig = {
+		"DEFINES_MODULE" => "YES"
+	}
 end

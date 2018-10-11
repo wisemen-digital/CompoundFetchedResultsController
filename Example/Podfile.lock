@@ -1,5 +1,5 @@
 PODS:
-  - CompoundFetchedResultsController (1.0.0)
+  - CompoundFetchedResultsController (1.0.1)
   - MagicalRecord (2.3.2):
     - MagicalRecord/Core (= 2.3.2)
   - MagicalRecord/Core (2.3.2)
@@ -8,14 +8,18 @@ DEPENDENCIES:
   - CompoundFetchedResultsController (from `../`)
   - MagicalRecord
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - MagicalRecord
+
 EXTERNAL SOURCES:
   CompoundFetchedResultsController:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  CompoundFetchedResultsController: a9692ea27d98c0906b6b7c64617e9f9d86dfc7be
+  CompoundFetchedResultsController: 9b52b5e46bb4ff57088d5bd8078c161d924207bb
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
 
-PODFILE CHECKSUM: 342bd7934d3116c9e75e8a48ff0a7ea81011e6c9
+PODFILE CHECKSUM: 5c1dbc7f42d6d8857dc3619523c609355e06f3bf
 
-COCOAPODS: 1.4.0.rc.1
+COCOAPODS: 1.6.0.beta.1

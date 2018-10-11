@@ -18,7 +18,7 @@ class StartViewController: UITableViewController {
 		if (path.section == 0) {
 			vc.frc = itemsFRC
 		} else {
-			var controllers = [NSFetchedResultsController<NSFetchRequestResult>]()
+			var controllers: [Any] = []
 
 			// create sub frc
 			if path.item == 1 || path.item == 3 {
@@ -32,7 +32,7 @@ class StartViewController: UITableViewController {
 			}
 
 			// create wrapper frc
-			let compound = CompoundFetchedResultsController(controllers: controllers)
+			let compound = CompoundFetchedResultsController(controllers: controllers.compactMap { $0 as? NSFetchedResultsController<NSFetchRequestResult>})
 			vc.frc = compound
 		}
 	}

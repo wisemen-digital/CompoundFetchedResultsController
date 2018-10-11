@@ -1,5 +1,5 @@
 PODS:
-  - CompoundFetchedResultsController (1.0.1)
+  - CompoundFetchedResultsController (2.0.0)
   - MagicalRecord (2.3.2):
     - MagicalRecord/Core (= 2.3.2)
   - MagicalRecord/Core (2.3.2)
@@ -17,7 +17,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CompoundFetchedResultsController: 9b52b5e46bb4ff57088d5bd8078c161d924207bb
+  CompoundFetchedResultsController: b8db0d2a96622bcfc84797b2dcc0127003b6a9af
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
 
 PODFILE CHECKSUM: 5c1dbc7f42d6d8857dc3619523c609355e06f3bf

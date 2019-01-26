@@ -17,9 +17,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CompoundFetchedResultsController: b8db0d2a96622bcfc84797b2dcc0127003b6a9af
+  CompoundFetchedResultsController: c6187bfb2f95f78ac8e132ef699e415721f6d310
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
 
 PODFILE CHECKSUM: 5c1dbc7f42d6d8857dc3619523c609355e06f3bf
 
-COCOAPODS: 1.6.0.beta.1
+COCOAPODS: 1.6.0.rc.1

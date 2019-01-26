@@ -16,7 +16,12 @@ class StartViewController: UITableViewController {
 
 		// first section is plain frc
 		if (path.section == 0) {
-			vc.frc = itemsFRC
+			if path.item == 0 {
+				vc.frc = itemsFRC
+			} else {
+				vc.frc = limitedItemsFRC
+				try? vc.frc.performFetch()
+			}
 		} else {
 			var controllers: [Any] = []
 
@@ -49,5 +54,13 @@ class StartViewController: UITableViewController {
 		                               sortedBy: "\(#keyPath(Item.section)),\(#keyPath(Item.name))",
 		                               ascending: true,
 		                               in: moc)
+	}
+
+	private var limitedItemsFRC: LimitedFetchedResultsController<NSFetchRequestResult> {
+		let moc = NSManagedObjectContext.mr_default()
+		let request = Item.mr_requestAllSorted(by: "\(#keyPath(Item.section)),\(#keyPath(Item.name))", ascending: true)
+		request.fetchLimit = 3
+
+		return LimitedFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: #keyPath(Item.section), cacheName: nil)
 	}
 }

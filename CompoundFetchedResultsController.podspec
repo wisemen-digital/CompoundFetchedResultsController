@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 	# info
 	s.name			= 'CompoundFetchedResultsController'
-	s.version		= '2.1.0'
+	s.version		= '2.1.1'
 	s.summary		= 'Fetched results controller wrapper that allows joining multiple FRCs'
 	s.description	= 'This framework provides fetched results controller subclasses for static data and joining multiple FRCs together into one.'
 	s.homepage		= 'https://github.com/djbe/CompoundFetchedResultsController'
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
 	# configuration
 	s.platform		= :ios, '8.0'
-	s.swift_version = '4.2'
+	s.swift_versions = ['4.2', '5.0']
 
 	# files
 	s.frameworks	= 'Foundation', 'CoreData'

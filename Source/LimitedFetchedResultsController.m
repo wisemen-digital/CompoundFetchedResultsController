@@ -41,6 +41,7 @@
 
 @interface LimitedFetchedResultsController () <NSFetchedResultsControllerDelegate>
 
+@property (nonatomic, assign) NSUInteger fetchLimit;
 @property (nonatomic, strong) NSFetchedResultsController *actualFRC;
 @property (nonatomic, assign) BOOL changed;
 
@@ -51,6 +52,8 @@
 - (instancetype)initWithFetchRequest:(NSFetchRequest *)fetchRequest managedObjectContext:(NSManagedObjectContext *)context sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)name {
 	self = [super initWithFetchRequest: fetchRequest managedObjectContext: context sectionNameKeyPath: sectionNameKeyPath cacheName: name];
 
+	self.fetchLimit = fetchRequest.fetchLimit;
+	fetchRequest.fetchLimit = NSUIntegerMax;
 	self.actualFRC = [[NSFetchedResultsController alloc] initWithFetchRequest: fetchRequest managedObjectContext: context sectionNameKeyPath: sectionNameKeyPath cacheName: name];
 	self.actualFRC.delegate = self;
 
@@ -66,8 +69,8 @@
 - (NSArray *)fetchedObjects {
 	NSArray *result = self.actualFRC.fetchedObjects;
 
-	if (result.count > self.fetchRequest.fetchLimit) {
-		NSRange range = NSMakeRange(0, self.fetchRequest.fetchLimit);
+	if (result.count > self.fetchLimit) {
+		NSRange range = NSMakeRange(0, self.fetchLimit);
 		result = [result subarrayWithRange: range];
 	}
 

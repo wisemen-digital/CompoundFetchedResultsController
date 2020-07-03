@@ -118,6 +118,8 @@ extension TableViewController: NSFetchedResultsControllerDelegate {
 			if !insertedSections.contains(newIndexPath!.section) && !reloadedSections.contains(newIndexPath!.section) {
 				insertedRows.append(newIndexPath!)
 			}
+		@unknown default:
+			fatalError()
 		}
 	}
 

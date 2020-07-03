@@ -9,7 +9,7 @@ DEPENDENCIES:
   - MagicalRecord
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - MagicalRecord
 
 EXTERNAL SOURCES:
@@ -20,6 +20,6 @@ SPEC CHECKSUMS:
   CompoundFetchedResultsController: 3dbb8505536625b11e51e501e37fa12bdfa8e7f0
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
 
-PODFILE CHECKSUM: 5c1dbc7f42d6d8857dc3619523c609355e06f3bf
+PODFILE CHECKSUM: e8d3ac8337ca7d25d2b0b39cf3115534c9342fd2
 
-COCOAPODS: 1.6.0.rc.1
+COCOAPODS: 1.9.3

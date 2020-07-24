@@ -14,7 +14,7 @@ public final class CompoundFetchedResultsController: NSFetchedResultsController<
 
 	public required init(controllers: [NSFetchedResultsController<NSFetchRequestResult>]) {
 		self.controllers = controllers
-		
+
 		// ensure we have the items before we start calculating offsets
 		for controller in controllers {
 			try? controller.performFetch()

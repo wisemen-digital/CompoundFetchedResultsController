@@ -1,32 +1,30 @@
 //
-//  CompoundFetchedResultsController+NSFetchedResultsController.swift
+//  FlatCompoundFetchedResultsController+NSFetchedResultsController.swift
 //  CompoundFetchedResultsController
 //
-//  Created by David Jennes on 27/12/16.
-//  Copyright © 2016. All rights reserved.
+//  Created by David Jennes on 24/07/2020.
 //
 
 import CoreData
 import UIKit
 
-extension CompoundFetchedResultsController: NSFetchedResultsControllerDelegate {
+extension FlatCompoundFetchedResultsController: NSFetchedResultsControllerDelegate {
 	public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		delegate?.controllerWillChangeContent?(self)
 	}
 
 	public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-		delegate?.controller?(self, didChange: sectionInfo, atSectionIndex: sectionIndex + offsets[controller]!, for: type)
+		guard let section = sections?.first else { return }
+		delegate?.controller?(self, didChange: section, atSectionIndex: 0, for: .update)
 	}
 
 	public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-		let old = indexPath.flatMap { IndexPath(item: $0.item, section: $0.section + offsets[controller]!) }
-		let new = newIndexPath.flatMap { IndexPath(item: $0.item, section: $0.section + offsets[controller]!) }
-
-		delegate?.controller?(self, didChange: anObject, at: old, for: type, newIndexPath: new)
+		guard let section = sections?.first else { return }
+		delegate?.controller?(self, didChange: section, atSectionIndex: 0, for: .update)
 	}
 
 	public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-		offsets = CompoundFetchedResultsController.calculateSectionOffsets(controllers: controllers)
+		controllersInfo = FlatCompoundFetchedResultsController.calculateSectionOffsets(controllers: controllers)
 		delegate?.controllerDidChangeContent?(self)
 	}
 

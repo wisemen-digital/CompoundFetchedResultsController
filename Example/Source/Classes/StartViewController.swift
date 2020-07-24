@@ -29,7 +29,7 @@ class StartViewController: UITableViewController {
 			if path.item == 1 || path.item == 3 {
 				controllers += [ValueFetchedResultsController<String>(values: ["abc", "def", "ghi", "jkl"], sectionTitle: "prepend")]
 			}
-			if (path.section == 1) {
+			if path.section == 1 || path.section == 2 {
 				controllers += [itemsFRC]
 			}
 			if path.item == 2 || path.item == 3 {
@@ -37,8 +37,11 @@ class StartViewController: UITableViewController {
 			}
 
 			// create wrapper frc
-			let compound = CompoundFetchedResultsController(controllers: controllers.compactMap { $0 as? NSFetchedResultsController<NSFetchRequestResult>})
-			vc.frc = compound
+			if path.section == 1 {
+				vc.frc = FlatCompoundFetchedResultsController(controllers: controllers.compactMap { $0 as? NSFetchedResultsController<NSFetchRequestResult>})
+			} else {
+				vc.frc = CompoundFetchedResultsController(controllers: controllers.compactMap { $0 as? NSFetchedResultsController<NSFetchRequestResult>})
+			}
 		}
 	}
 
